@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
 }));
-const Person = props => {
+const UserOutput = props => {
   const classes = useStyles();
   const [codeState, setCodeState] = useState({
     code: Math.floor(Math.random() * 1250000)
@@ -29,13 +29,10 @@ const Person = props => {
         square={false}
         //onClick={props.click}
         >
-            <p>I'm {props.name} and I am {props.age} years old</p>
-            <p>{props.children}</p>
-            <p><b>My Code: </b>{codeState.code}</p>
-            <input type="text" onChange={props.changed} value={props.name} />
+        <p>Your User Name is {props.userName}</p>
         </Paper>
         </div>
       );
 }
 
-export default Person;
+export default UserOutput;
