@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import './Person.css';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Button from '@material-ui/core/Button';
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'block',
@@ -27,8 +30,15 @@ const Person = props => {
         <Paper 
         elevation={3} 
         square={false}
-        //onClick={props.click}
         >
+        <IconButton 
+         className="deletar"
+         variant="contained"
+         color="primary" 
+         onClick={props.click}
+        
+         ><DeleteIcon/>
+         </IconButton>
             <p>I'm {props.name} and I am {props.age} years old</p>
             <p>{props.children}</p>
             <p><b>My Code: </b>{codeState.code}</p>

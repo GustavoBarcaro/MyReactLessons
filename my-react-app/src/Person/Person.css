@@ -2,3 +2,9 @@ body{
     background-color: #310069;
     color: white;
 }
+.deletar{
+    min-width: 30px!important;
+    padding: 2px !important;
+    margin: 0px !important;
+    float: right;
+}
