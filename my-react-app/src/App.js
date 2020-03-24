@@ -3,11 +3,14 @@ import logo from './logo.svg';
 import './App.css';
 import Person  from './Person/Person';
 import Button from '@material-ui/core/Button';
-import FindReplaceIcon from '@material-ui/icons/FindReplace';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import styled from 'styled-components';
 
-
+const Styledh1 = styled.h1`
+                color:green;
+                font-weight:bold;
+                `;
 
 class App extends Component{
 	state = {
@@ -31,7 +34,7 @@ class App extends Component{
     switched: false,
     show: false
   }
-  
+
 nameChangedHandler = (event, id) => {
   const personIndex = this.state.persons.findIndex(p => {
     return p.id === id;
@@ -46,6 +49,7 @@ nameChangedHandler = (event, id) => {
     persons: persons
   })
 }
+
 delelePersonHandler = (personIndex) =>{
   const persons = [...this.state.persons];
   persons.splice(personIndex, 1);
@@ -58,8 +62,9 @@ togglePersonsHandler = () =>{
       show: !doesShow
     })
 }
-
+ 
 	render () {
+  
     let persons = null;
     if(this.state.show){
       persons = (
@@ -78,17 +83,24 @@ togglePersonsHandler = () =>{
         </div> 
       );
     }
+    let classes = [];
+    if(this.state.persons.length <= 2){
+      classes.push('red');
+    }
+    if(this.state.persons.length <= 1) {
+      classes.push('bold');
+    }
 		return (
 		  <div className="App">
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
-			  <h1>Hi, I'm a React App</h1>
-			  <p>This is really working!!</p>
+			  <Styledh1>Hi, I'm a React App</Styledh1>
+			  <p className={classes.join(' ')} >This is really working!!</p>
 			  <Button 
          variant="contained"
-         color="primary" 
+         color={this.state.show ? "secondary" : "primary"} 
          onClick={this.togglePersonsHandler}
          endIcon = {this.state.show ? <VisibilityOffIcon/>: <VisibilityIcon/>}
          >
@@ -97,11 +109,8 @@ togglePersonsHandler = () =>{
         {
           persons
         }
-        
-			  
 		  </div>
 		);
-		//return React.createElement('div', {className: 'App'},React.createElement('h1', null, 'Do it work??'))
-	  }
+	}
 }
 export default App;

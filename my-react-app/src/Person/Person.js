@@ -4,7 +4,8 @@ import Paper from '@material-ui/core/Paper';
 import './Person.css';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Button from '@material-ui/core/Button';
+import styled from 'styled-components';
+
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'block',
