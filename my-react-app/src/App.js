@@ -5,31 +5,13 @@ import Person  from './Person/Person';
 import Button from '@material-ui/core/Button';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
-import styled from 'styled-components';
-
-const Styledh1 = styled.h1`
-                color:green;
-                font-weight:bold;
-                `;
 
 class App extends Component{
 	state = {
 		persons: [
-			{
-        id: 1,
-				name: "Gustavo",
-				age: 18
-			},
-			{
-        id:2,
-				name: "Guilherme",
-				age: 18
-			},
-			{
-        id:3,
-				name: "isadora",
-				age: 28
-			}
+			{ id: 1, name: "Gustavo", age: 18 },
+			{ id: 2, name: "Guilherme", age: 18 },
+			{ id: 3, name: "isadora", age: 28 }
     ],
     switched: false,
     show: false
