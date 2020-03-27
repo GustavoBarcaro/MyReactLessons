@@ -1,0 +1,25 @@
+.App {
+    text-align: center;
+  }
+  .red {
+    color: red;
+  }
+  .bold{
+    font-weight: bold;
+  }
+  .Cockpit h1{
+    color:green;
+    font-weight:bold;
+  }
+  .CockpitPink h1{
+    color:pink;
+    font-weight: bold;
+  }
+  @media (max-width: 600px){
+    .Cockpit h1{
+      color: darkgreen;
+    }
+    .CockpitPink h1{
+      color: darkorchid;
+    }
+  }
