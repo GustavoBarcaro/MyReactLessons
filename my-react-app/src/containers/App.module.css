@@ -1,0 +1,25 @@
+.App {
+  text-align: center;
+}
+.red {
+  color: red;
+}
+.bold{
+  font-weight: bold;
+}
+.h1{
+  color:green;
+  font-weight:bold;
+}
+.h1Pink{
+  color:pink;
+  font-weight: bold;
+}
+@media (max-width: 600px){
+  .h1{
+    color: darkgreen;
+  }
+  .h1Pink{
+    color: darkorchid;
+  }
+}

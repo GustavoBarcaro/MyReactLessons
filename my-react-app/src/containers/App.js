@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Person  from './Person/Person';
+import styles from './App.module.css';
+import Person  from '../components/Persons/Person/Person';
 import Button from '@material-ui/core/Button';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
@@ -67,18 +66,18 @@ togglePersonsHandler = () =>{
     }
     let classes = [];
     if(this.state.persons.length <= 2){
-      classes.push('red');
+      classes.push(styles.red);
     }
     if(this.state.persons.length <= 1) {
-      classes.push('bold');
+      classes.push(styles.bold);
     }
 		return (
-		  <div className="App">
+		  <div className={styles.App}>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
-			  <Styledh1>Hi, I'm a React App</Styledh1>
+			  <h1 className={this.state.show ? styles.h1Pink : styles.h1}>Hi, I'm a React App</h1>
 			  <p className={classes.join(' ')} >This is really working!!</p>
 			  <Button 
          variant="contained"
