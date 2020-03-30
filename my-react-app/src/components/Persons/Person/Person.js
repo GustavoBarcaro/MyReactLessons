@@ -25,6 +25,7 @@ const Person = props => {
   const [codeState, setCodeState] = useState({
     code: Math.floor(Math.random() * 1250000)
   });
+  console.log('[Person.js] rendering...');
     return (
         <div 
         className={classes.root+' '+ 'Person'}>

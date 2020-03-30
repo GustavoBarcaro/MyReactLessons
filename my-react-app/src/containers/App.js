@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
+
 import styles from './App.module.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component{
+  constructor(props){
+    super(props);
+    console.log('[App.js] constructor');
+  }
 	state = {
 		persons: [
 			{ id: 1, name: "Gustavo", age: 18 },
@@ -13,6 +18,15 @@ class App extends Component{
     switched: false,
     show: false
   }
+
+static getDerivedStateFromProps(props, state){
+  console.log('[App.js] getDerivedStateFromProps', props);
+  return state;
+}
+
+componentDidMount () {
+  console.log('[App.js] componentDidMount');
+}
 
 nameChangedHandler = (event, id) => {
   const personIndex = this.state.persons.findIndex(p => {
@@ -43,6 +57,7 @@ togglePersonsHandler = () =>{
 }
  
 	render () {
+    console.log('[App.js] render')
     let persons = null;
     if(this.state.show){
       persons = <Persons 
@@ -53,7 +68,8 @@ togglePersonsHandler = () =>{
           }
 		return (
 		  <div className={styles.App}>
-        <Cockpit 
+        <Cockpit
+          title={this.props.appTitle}
           persons={this.state.persons}
           show={this.state.show}
           clicked={this.togglePersonsHandler}
