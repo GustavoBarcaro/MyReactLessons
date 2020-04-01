@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import propTypes from 'prop-types';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import './Person.css';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import styled from 'styled-components';
+
+import WithClass from "../../../hoc/WithClass";
+// import styled from 'styled-components';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,27 +31,36 @@ const Person = props => {
   });
   console.log('[Person.js] rendering...');
     return (
-        <div 
-        className={classes.root+' '+ 'Person'}>
-        <Paper 
-        elevation={3} 
-        square={false}
-        >
-        <IconButton 
-         className="deletar"
-         variant="contained"
-         color="primary" 
-         onClick={props.click}
-        
-         ><DeleteIcon/>
-         </IconButton>
-            <p>I'm {props.name} and I am {props.age} years old</p>
-            <p>{props.children}</p>
-            <p><b>My Code: </b>{codeState.code}</p>
-            <input type="text" onChange={props.changed} value={props.name} />
-        </Paper>
-        </div>
+        <WithClass classes={classes.root+' '+ 'Person'}>
+          <Paper 
+            elevation={3} 
+            square={false}
+            >
+            <IconButton 
+            className="deletar"
+            variant="contained"
+            color="primary" 
+            onClick={props.click}
+            
+            ><DeleteIcon/>
+            </IconButton>
+                <p>I'm {props.name} and I am {props.age} years old</p>
+                <p>{props.children}</p>
+                <p><b>My Code: </b>{codeState.code}</p>
+                <input 
+                  type="text"
+                  onChange={props.changed} 
+                  value={props.name} />
+            </Paper>
+        </WithClass>
       );
 }
+
+Person.propTypes = {
+  click: propTypes.func,
+  name: propTypes.string,
+  age: propTypes.number,
+  changed: propTypes.func
+};
 
 export default Person;
