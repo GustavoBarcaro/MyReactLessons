@@ -3,7 +3,7 @@ import Person from './Person/Person';
 
 
 class Persons extends PureComponent{
-    
+    //static contextType = AuthContext
     // shouldComponentUpdate(nextProps, nextState) {
     //     console.log('[Persons.js] shouldComponentUpdate');
     //     if(

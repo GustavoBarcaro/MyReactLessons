@@ -5,6 +5,7 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 import WithClass from '../hoc/WithClass'
+import AuthContext from '../context/auth-context'
 
 class App extends Component{
   constructor(props){
@@ -19,7 +20,8 @@ class App extends Component{
     ],
     switched: false,
     show: false,
-    showCockpit: true
+    showCockpit: true,
+    authenticated: false
   }
 
 static getDerivedStateFromProps(props, state){
@@ -77,29 +79,52 @@ togglePersonsHandler = () =>{
       show: !doesShow
     })
 }
+
+loginHandler = () => {
+  this.setState({
+    authenticated: true
+  });
+}
  
 	render () {
     console.log('[App.js] render')
     let persons = null;
     if(this.state.show){
-      persons = <Persons 
-                  persons={this.state.persons}
-                  clicked={this.delelePersonHandler}
-                  changed={this.nameChangedHandler}  
-                />
+      persons = (
+        <Persons 
+          persons={this.state.persons}
+          clicked={this.delelePersonHandler}
+          changed={this.nameChangedHandler}
+          isAuthenticated ={this.state.authenticated}  
+        />
+      )
           }
 		return (
 		  <WithClass classes={styles.App}>
-        <button onClick={() => {this.setState({showCockpit: !this.state.showCockpit})}}>Toggle Cockpit</button>
+
+        <button 
+        onClick={() => {
+            this.setState({showCockpit: !this.state.showCockpit})
+        }}>
+          Toggle Cockpit
+        </button>
+        <AuthContext.Provider  value={
+            {
+              authenticated: this.state.authenticated,
+              login: this.loginHandler
+            }
+        }>
           {this.state.showCockpit ? 
           <Cockpit
             title={this.props.appTitle}
             personsLength={this.state.persons.length}
             show={this.state.show}
             clicked={this.togglePersonsHandler}
+            login={this.loginHandler}
           /> 
           : null}
           { persons }
+        </AuthContext.Provider>
 		  </WithClass>
 		);
 	}
