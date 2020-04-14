@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-
+import {Redirect } from 'react-router-dom';
 import './NewPost.css';
 
 class NewPost extends Component {
     state = {
         title: '',
         content: '',
-        author: 'Gustavo'
+        author: 'Gustavo',
+        submited: false
     }
 
 
@@ -21,13 +22,24 @@ class NewPost extends Component {
         axios.post('/posts', data)
             .then(response => {
                 console.log(response);
+                //this.props.history.replace() faz o mesmo q o Redirect
+                //adiciona mais uma pagina no 'stack'
+                this.props.history.push('/posts');
+                // this.setState({
+                //     submited:true
+                // })
             });
-
     }
 
     render () {
+        // Substitui a pagina q estamos, setinha de voltar  não volta pro new post
+        // let redirect = null;
+        // if(this.state.submited){
+        //         redirect = <Redirect to="posts" />;
+        // }
         return (
             <div className="NewPost">
+                {/* { redirect } */}
                 <h1>Add a Post</h1>
                 <label>Title</label>
                 <input type="text" value={this.state.title} onChange={(event) => this.setState({title: event.target.value})} />
