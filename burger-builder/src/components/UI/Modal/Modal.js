@@ -30,4 +30,4 @@ class Modal extends Component {
     }
 }
 
-export default Modal
+export default Modal;
