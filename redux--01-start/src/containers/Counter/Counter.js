@@ -6,11 +6,7 @@ import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
 
 class Counter extends Component {
-    state = {
-        counter: 0
-    }
     render () {
-        console.log(this.props);
         return (
             <div>
                 <CounterOutput value={this.props.counter} />
