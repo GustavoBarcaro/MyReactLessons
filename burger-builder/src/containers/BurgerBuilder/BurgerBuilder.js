@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from '../../axios-orders';
 import { connect } from 'react-redux';
-
+ 
 import Aux from '../../hoc/Auxiliary/Auxiliary';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
@@ -9,7 +9,8 @@ import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
-import * as actionTypes from '../../store/actions';
+import * as actionTypes from '../../store/actions/actionTypes';
+import * as actionCreators from '../../store/actions/index'
 
 
 
@@ -22,19 +23,19 @@ class BurgerBuilder extends Component{
     }
 
 
-    // componentDidMount () {
-    //     axios.get('https://burger-builder-2f7a6.firebaseio.com/ingredients.json')
-    //         .then(response => {
-    //             this.setState({
-    //                 ingredients: response.data
-    //             })
-    //         })
-    //         .catch(error => {
-    //             this.setState({
-    //                 error: true
-    //             })
-    //         }); 
-    // }
+    componentDidMount () {
+        // axios.get('https://burger-builder-2f7a6.firebaseio.com/ingredients.json')
+        //     .then(response => {
+        //         this.setState({
+        //             ingredients: response.data
+        //         })
+        //     })
+        //     .catch(error => {
+        //         this.setState({
+        //             error: true
+        //         })
+        //     }); 
+    }
 
     purchaseHandler = () => {
         this.setState({
@@ -54,16 +55,8 @@ class BurgerBuilder extends Component{
     }
 
     purchaseContinueHandler = () => {
-
-        const queryParams = [];
-        for(let i in this.props.ingredients){
-            queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
-        }
-        queryParams.push('price='+this.props.price);
-        const queryString = queryParams.join('&');
         this.props.history.push({
-            pathname: '/checkout',
-            search: '?' + queryString
+            pathname: '/checkout'
         });
     }
 
@@ -132,8 +125,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return{
-        onAddIngredient: (ingredientName) => dispatch({type: actionTypes.ADD_INGREDIENT, ingredientName: ingredientName}),
-        onRemoveIngredient: (ingredientName) => dispatch({type: actionTypes.REMOVE_INGREDIENT, ingredientName: ingredientName})
+        onAddIngredient: (ingredientName) => dispatch(actionCreators.addIngredient(ingredientName)),
+        onRemoveIngredient: (ingredientName) => dispatch(actionCreators.removeIngredient(ingredientName))
     }
 };
 
