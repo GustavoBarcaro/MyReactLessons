@@ -14,7 +14,7 @@ import * as actions from '../../store/actions/index'
 
 
 
-class BurgerBuilder extends Component{
+export class BurgerBuilder extends Component{
     
     state = {
         purchasing: false
@@ -96,10 +96,6 @@ class BurgerBuilder extends Component{
                                 ingredients={this.props.ingredients}
                             />
         }
-        
-        // if ( this.state.loading ) {
-        //     orderSummary = <Spinner />
-        // }
 
         return (
             <Aux>
